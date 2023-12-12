@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Microeconomics: Computing a Selling Price</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+        $(function () {
+            // Make *any* div with class 'compute' a Sage cell
+            sagecell.makeSagecell({
+                inputLocation: 'div.compute',
+                template: sagecell.templates.minimal,
+                evalButtonText: 'Zapnite interaktívnu aplikáciu teraz'
+            });
+        });
+    </script>
+</head>
+<body style="width: 1000px; background-color: #E0F7FA; margin: 0 auto; text-align: center;">
+    <h1>Microeconomics: Computing a Selling Price</h1>
+    <p>(Od Artem Cherneha)</p>
+    <hr>
+    <h2>Macroekonómia</h2>
+    <p>Macroekonómia je odvetvie ekonómie, ktoré sa zaoberá štúdiom ekonomických javov na celkovej úrovni, teda na úrovni krajiny alebo regiónu. Analyzuje ekonomické vzťahy a procesy, ktoré ovplyvňujú celkovú produkciu, zamestnanosť, infláciu, hospodársky rast a ďalšie makroekonomické ukazovatele.</p>
+    <h2>Zadajte požadované hodnoty na zobrazenie výsledku</h2>
+    <div class="compute">
+        <script type="text/x-sage">
+import matplotlib.pyplot as plt
+
+@interact
+def business_analysis(price_1=slider(30, 60, step_size=0.1, default=49.95),
+                      price_2=slider(30, 60, step_size=0.1, default=39.95),
+                      sales_1=slider(0, 200, step_size=1, default=80),
+                      sales_2=slider(0, 200, step_size=1, default=140),
+                      fixed_costs=slider(0, 10000, step_size=100, default=4000),
+                      variable_cost=slider(0, 20, step_size=0.1, default=7),
+                      publisher_percentage=slider(0, 100, step_size=1, default=50)):
+
+    # Calculate total sales and total revenue
+    total_sales = sales_1 + sales_2
+    total_revenue = price_1 * sales_1 + price_2 * sales_2
+
+    # Calculate total costs
+    total_costs = fixed_costs + variable_cost * total_sales
+
+    # Calculate profit
+    profit = (publisher_percentage / 100) * total_revenue - total_costs
+
+    # Plot the results
+    labels = ['Total Sales', 'Total Revenue', 'Total Costs', 'Profit']
+    values = [total_sales, total_revenue, total_costs, profit]
+
+    fig, ax = plt.subplots()
+    ax.bar(labels, values)
+    ax.set_ylabel('Values')
+    ax.set_title('Business Analysis')
+
+    plt.show()
+        </script>
+    </div>
+    <p style="text-align: left;">Zdrojový kód pre SageMath</p>
+    <pre style="text-align: left"><code>
+import matplotlib.pyplot as plt
+
+@interact
+def business_analysis(price_1=slider(30, 60, step_size=0.1, default=49.95),
+                      price_2=slider(30, 60, step_size=0.1, default=39.95),
+                      sales_1=slider(0, 200, step_size=1, default=80),
+                      sales_2=slider(0, 200, step_size=1, default=140),
+                      fixed_costs=slider(0, 10000, step_size=100, default=4000),
+                      variable_cost=slider(0, 20, step_size=0.1, default=7),
+                      publisher_percentage=slider(0, 100, step_size=1, default=50)):
+
+    # Calculate total sales and total revenue
+    total_sales = sales_1 + sales_2
+    total_revenue = price_1 * sales_1 + price_2 * sales_2
+
+    # Calculate total costs
+    total_costs = fixed_costs + variable_cost * total_sales
+
+    # Calculate profit
+    profit = (publisher_percentage / 100) * total_revenue - total_costs
+
+    # Plot the results
+    labels = ['Total Sales', 'Total Revenue', 'Total Costs', 'Profit']
+    values = [total_sales, total_revenue, total_costs, profit]
+
+    fig, ax = plt.subplots()
+    ax.bar(labels, values)
+    ax.set_ylabel('Values')
+    ax.set_title('Business Analysis')
+
+    plt.show()
+    </code></pre>
+    <hr>
+    <p style="text-align: center;">Vypracoval: Artem Cherneha.</p>
+</body>
+</html>
